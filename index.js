@@ -11,7 +11,7 @@ const { Client } = require("@notionhq/client")
 const dotenv = require("dotenv")
 const { Octokit } = require("octokit")
 const _ = require("lodash")
-const core = require("@actions/core");
+const core = require("@actions/core")
 
 dotenv.config()
 const octokit = new Octokit({ auth: core.getInput("githubKey") })
@@ -219,6 +219,9 @@ function getPropertiesFromIssue(issue) {
     },
     "Issue URL": {
       url,
+    },
+    "Repo": {
+      select: { name: process.env.GITHUB_REPOSITORY.split("/")[1] },
     },
   }
 }
